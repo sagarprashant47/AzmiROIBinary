@@ -1,0 +1,185 @@
+<div class="animated fadeIn">
+  <div class="row" style="margin-top: 25px;">
+    <div  class="col-xxl-4 col-xl-4 col-lg-12">
+        <div class="card welcome-profile">
+            <div class="card-body">
+                <h4>Welcome , {{CustomerInfoModel.FullName}}</h4>
+                <ul>
+                   <li>
+                        <b>Email : </b>{{CustomerInfoModel.Email}}  
+                    </li>
+                   <li>
+                        <b>Date of Joining : </b>{{CustomerInfoModel.RegistrationDate}}
+                    </li>
+                    <li>
+                        <b>Current Contract : </b>{{CustomerInfoModel.PackageName}}
+                    </li>
+                    <li>
+                        <b>Inviter : </b>{{CustomerInfoModel.ReferredBy}} ({{CustomerInfoModel.AffilateId}})
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xxl-4 col-xl-4 col-lg-12">
+        <div class="card">
+            <div class="card-body binarybox">
+                <div class="invite-content">
+                    <h4>Invite a friend</h4>
+                    <p>You will receive 10% commission for referring friends and more! <br>
+                    </p>
+
+                    <div class="copy-link">
+                        <form action="#">
+                            <div class="input-group">
+                                <input id="my-link-m" #referralLink type="text" class="form-control" value="{{SiteUrl}}/#/?r={{CustomerInfoModel.Username}}">
+                                <span class="input-group-text my-link-copy" (click)="copyInputMessage(referralLink)">Copy</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xxl-4 col-xl-4 col-lg-12">
+        <div class="card">
+            <div class="card-body binarybox">
+                <div class="invite-content">
+                    <h4>Binary Side</h4>
+                    <p>Choose the side for your next indications
+                    </p>
+                    <p class="text-center mb-0 pb-0">
+                    <a (click)="SetBinarySetting('L')" [ngClass]="{'active': CustomerInfoModel.SystemName ==='L'}" class="text-dark btn btn-outline-primary">
+                        Side of Binary:  Left
+                    </a>      
+                    <a  (click)="SetBinarySetting('A')" [ngClass]="{'active': CustomerInfoModel.SystemName ==='A'}" class="text-dark btn btn-outline-primary">
+                        Side of Binary:  Auto
+                    </a>        
+                    <a  (click)="SetBinarySetting('R')" [ngClass]="{'active': CustomerInfoModel.SystemName ==='R'}" class="text-dark btn btn-outline-primary">
+                        Side of Binary:  Right
+                    </a>        
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="dashboardcount">
+            <ul>
+                <li>
+                    <div class="card text-white bg-info cardbalance">
+                        <div class="card-body pb-0">
+                          <div class="text-value"><span>Cash  Wallet</span>{{CustomerInfoModel.AvailableBalance}}$</div>
+                        </div>
+                      </div>
+                </li>
+                <li>
+                    <div class="card text-white bg-warning cardbluebalance">
+                        <div class="card-body pb-0">
+                          <div class="text-value"><span>Daily Bonus</span> {{CustomerInfoModel.TradeIncome}}$</div>
+                        </div>
+                      </div>
+                </li>
+                <li>
+                    <div class="card text-white bg-info cardbalance">
+                        <div class="card-body pb-0">
+                          <div class="text-value"><span>Binary Bonus </span> {{CustomerInfoModel.CyclerIncome}}$</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="card text-white bg-info cardbalance">
+                        <div class="card-body pb-0">
+                          <div class="text-value"><span>Todays Point</span> {{CustomerInfoModel.AccumulatedPairing}}</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="card text-white bg-info cardbalance">
+                        <div class="card-body pb-0">
+                          <div class="text-value"><span>Direct Bonus </span> {{CustomerInfoModel.DirectBonus}}$</div>
+                        </div>
+                      </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="col-12 col-lg-6">
+                <div class="card tasklist">
+                    <div class="card-header">
+                        <h4>Tasks List</h4>
+                    </div>
+                    <div class="card-body">
+                      
+                        <p>See your complete and incomplete tasks.</p>
+
+                        <ul>
+                                                    <li>
+                            <a href="#">
+                                <span class="verified">
+                                    <i class="fa fa-times" aria-hidden="true" [hidden]="WalletMessage != 'Wallet Address has not been configured.'"></i>
+                                    <i class="fa fa-check" aria-hidden="true" [hidden]="WalletMessage == 'Wallet Address has not been configured.'"></i>
+                                </span>
+                                {{WalletMessage}}                    </a>
+                            </li>
+                           <li class="active-contract">
+                                <a href="#">
+                                    <span class="verified">
+                                        <i class="fa fa-times" aria-hidden="true" [hidden]="TwoFAMessage != '2FA is not enabled.'"></i>
+                                        <i class="fa fa-check" aria-hidden="true" [hidden]="TwoFAMessage == '2FA is not enabled.'"></i>
+                                    </span>
+                                    {{TwoFAMessage}}                                  </a>
+                            </li>
+                            <li class="active-contract">
+                                <a href="#">
+                                    <span class="verified">
+                                        <i class="fa fa-times" aria-hidden="true" [hidden]="ContractMessage != 'Your Contract is Not Active.'"></i>
+                                        <i class="fa fa-check" aria-hidden="true" [hidden]="ContractMessage == 'Your Contract is Not Active.'"></i>
+                                    </span>
+                                    {{ContractMessage}}                                  </a>
+                            </li>
+                            <li class="active-on-binary">
+                                <a href="#">
+                                    <span class="verified">
+                                        <i class="fa fa-times" aria-hidden="true" [hidden]="BinaryMessge != 'You are not Qualified on Binary.'"></i>
+                                        <i class="fa fa-check" aria-hidden="true" [hidden]="BinaryMessge == 'You are not Qualified on Binary.'"></i>
+                                    </span>
+                                    {{BinaryMessge}}                             </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+    </div>
+    <div class="col-12 col-lg-6">
+<div class="card tasklist">
+    <div class="card-header">
+        <h4>Binary Tree Summary</h4>
+    </div>
+                    <div class="card-body binarycountbox">
+                       
+                        <ul>
+                            <li><h4>Left</h4></li>
+                           <li>
+                                <b>Users on Left : </b>{{treebalance.LeftUsers}}  
+                            </li>
+                            <li>
+                                <b>Points on Left : </b>{{treebalance.TotalLeftPoint}}
+                            </li>
+                        </ul>
+                        <ul>
+                            <li><h4>Right</h4></li>
+                           <li>
+                                <b>Users on Right : </b>{{treebalance.RightUsers}}
+                            </li>
+                           
+                            <li>
+                                <b>Points on Right : </b>{{treebalance.TotalRightPoint}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+    </div>
+    <!-- <div class="col-2"><img src="assets/img/avatars/6.jpg"></div> -->
+  </div>
+</div>
