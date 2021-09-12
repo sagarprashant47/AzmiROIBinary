@@ -12,9 +12,6 @@
                         <b>Date of Joining : </b>{{CustomerInfoModel.RegistrationDate}}
                     </li>
                     <li>
-                        <b>Current Contract : </b>{{CustomerInfoModel.PackageName}}
-                    </li>
-                    <li>
                         <b>Inviter : </b>{{CustomerInfoModel.ReferredBy}} ({{CustomerInfoModel.AffilateId}})
                     </li>
                 </ul>
@@ -64,19 +61,66 @@
         </div>
     </div>
     <div class="col-md-12">
+        <div class="card-header">
+            <h4>Investment Income</h4>
+        </div>
         <div class="dashboardcount">
             <ul>
                 <li>
                     <div class="card text-white bg-info cardbalance">
                         <div class="card-body pb-0">
-                          <div class="text-value"><span>Cash  Wallet</span>{{CustomerInfoModel.AvailableBalance}}$</div>
+                          <div class="text-value"><span>Plan</span>{{CustomerInfoModel.PackageName}}</div>
                         </div>
                       </div>
                 </li>
                 <li>
                     <div class="card text-white bg-warning cardbluebalance">
                         <div class="card-body pb-0">
-                          <div class="text-value"><span>Daily Bonus</span> {{CustomerInfoModel.TradeIncome}}$</div>
+                          <div class="text-value"><span>ROI Limit</span> {{CustomerInfoModel.ROILimit}}$</div>
+                        </div>
+                      </div>
+                </li>
+                <li>
+                    <div class="card text-white bg-warning cardbluebalance">
+                        <div class="card-body pb-0">
+                          <div class="text-value"><span>Accumulated ROI</span> {{CustomerInfoModel.TradeIncome}}$</div>
+                        </div>
+                      </div>
+                </li>
+                <li>
+                    <div class="card text-white bg-info cardbalance">
+                        <div class="card-body pb-0">
+                          <div class="text-value"><span>Balance ROI </span>{{CustomerInfoModel.ROILimit - CustomerInfoModel.TradeIncome}}$</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="card text-white bg-info cardbalance">
+                        <div class="card-body pb-0">
+                          <div class="text-value"><span>Total Withdrawal</span> {{CustomerInfoModel.PendingWithdrawal + CustomerInfoModel.CompletedWithdrawal}}</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="card text-white bg-info cardbalance">
+                        <div class="card-body pb-0">
+                          <div class="text-value"><span>Total Transfer </span> {{CustomerInfoModel.TotalTransfer}}$</div>
+                        </div>
+                      </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card-header">
+            <h4>Network Income</h4>
+        </div>
+        <div class="dashboardcount">
+            <ul>
+                <li>
+                    <div class="card text-white bg-info cardbalance">
+                        <div class="card-body pb-0">
+                          <div class="text-value"><span>Sponsor Bonus </span> {{CustomerInfoModel.DirectBonus}}$</div>
                         </div>
                       </div>
                 </li>
@@ -90,16 +134,39 @@
                 <li>
                     <div class="card text-white bg-info cardbalance">
                         <div class="card-body pb-0">
-                          <div class="text-value"><span>Todays Point</span> {{CustomerInfoModel.AccumulatedPairing}}</div>
+                          <div class="text-value"><span>Today's SB </span> 0 $</div>
                         </div>
                     </div>
                 </li>
                 <li>
                     <div class="card text-white bg-info cardbalance">
                         <div class="card-body pb-0">
-                          <div class="text-value"><span>Direct Bonus </span> {{CustomerInfoModel.DirectBonus}}$</div>
+                          <div class="text-value"><span>Today's TB </span> 0 $</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card-header">
+            <h4>Wallet</h4>
+        </div>
+        <div class="dashboardcount">
+            <ul>
+                <li>
+                    <div class="card text-white bg-info cardbalance">
+                        <div class="card-body pb-0">
+                          <div class="text-value"><span>Cash Wallet </span> {{CustomerInfoModel.AvailableBalance}}$</div>
                         </div>
                       </div>
+                </li>
+                <li>
+                    <div class="card text-white bg-info cardbalance">
+                        <div class="card-body pb-0">
+                          <div class="text-value"><span>Token Wallet </span> {{CustomerInfoModel.TokenBalance}}$</div>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -164,7 +231,7 @@
                                 <b>Users on Left : </b>{{treebalance.LeftUsers}}  
                             </li>
                             <li>
-                                <b>Points on Left : </b>{{treebalance.TotalLeftPoint}}
+                                <b>Investment on Left : </b>{{treebalance.TotalLeftPoint}}
                             </li>
                         </ul>
                         <ul>
@@ -174,7 +241,7 @@
                             </li>
                            
                             <li>
-                                <b>Points on Right : </b>{{treebalance.TotalRightPoint}}
+                                <b>Investment on Right : </b>{{treebalance.TotalRightPoint}}
                             </li>
                         </ul>
                     </div>

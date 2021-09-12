@@ -3,7 +3,7 @@
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header">
-          <strong>Buy Trade Lots</strong>          
+          <strong>Buy Plan</strong>          
         </div>
         <div class="card-body" [hidden]="!showform">
             <div class="packagelist" > <!-- *ngIf="confirm" -->
@@ -12,7 +12,7 @@
                   <span class="packagebtn">{{plan.Name}}</span>
                 </div>
                 <div class="col-md-8">
-                  <h4>{{plan.Name}} ({{plan.MinimumInvestment}}$) , Daily Binary Cap : {{plan.MinimumInvestment}}$ , Gains : 300%</h4>
+                  <h4>{{plan.Name}} ({{plan.MinimumInvestment}}$) , Binary Percentage : {{plan.DisplayOrder}}$ , ROI Limit : {{plan.MaximumInvestment}}%</h4>
                 </div>
                 <div class="col-md-2">
                   <a (click)="onSubmit(plan)" class="btn btn-outline-primary active  my-link-copy">Select Package</a>

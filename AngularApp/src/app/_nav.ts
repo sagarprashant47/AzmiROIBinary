@@ -22,17 +22,12 @@ export const navItems: INavData[] = [
   //   icon: 'icon-basket-loaded'
   // },
   {
-    name: 'Signals',
-    url: '/base/signals',
-    icon: 'fa fa-bell'
-  },
-  {
-    name: 'Buy Trade Lots',
+    name: 'Buy Plan',
     url: '/base/buyadpack',
     icon: 'icon-basket-loaded'
   },
   {
-    name: 'My Lots',
+    name: 'My Plan',
     url: '/base/myshares',
     icon: 'fa fa-line-chart'
   },
@@ -103,11 +98,11 @@ export const navItems: INavData[] = [
   //     }
   //   ]
   // },
-  {
-    name: 'Marketing Tools',
-    url: '/base/promotion',
-    icon: 'cui-globe'
-  },
+  // {
+  //   name: 'Marketing Tools',
+  //   url: '/base/promotion',
+  //   icon: 'cui-globe'
+  // },
   // {
   //   name: 'Advertisment',
   //   url: '/base/marketing',

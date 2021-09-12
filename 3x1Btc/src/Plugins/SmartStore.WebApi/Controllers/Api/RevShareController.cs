@@ -493,7 +493,7 @@ namespace SmartStore.WebApi.Controllers.Api
 				var Customer = _customerService.GetCustomerById(CustomerId);
 				var gridModel = new GridModel<MyInvestmentPlan>();
 				var customerplan = Customer.CustomerPlan.Where(x => x.IsActive == true).ToList();
-				var otherEarning = _customerService.GetCustomerTotalEarnings(CustomerId);
+				//var otherEarning = _customerService.GetCustomerTotalEarnings(CustomerId);
 
 				gridModel.Data = customerplan.Select(x =>
 				{
@@ -503,7 +503,7 @@ namespace SmartStore.WebApi.Controllers.Api
 					myInvestment.PlanName = _planService.GetPlanById(x.PlanId).Name;
 					myInvestment.PurchaseDate = x.PurchaseDate;
 					myInvestment.AmountInvested = x.AmountInvested;
-					myInvestment.ROIPaid = x.ROIPaid + otherEarning;
+					myInvestment.ROIPaid = x.ROIPaid;
 					myInvestment.ROIToPay = x.ROIToPay;
 					myInvestment.ROIPending = (x.ROIToPay - myInvestment.ROIPaid);
 					myInvestment.ROIPaidString = myInvestment.ROIPaid.ToString() + " " + _workContext.WorkingCurrency.CurrencyCode;
