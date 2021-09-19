@@ -270,6 +270,7 @@
     <Compile Include="Models\Api\Customer\LoginModel.cs" />
     <Compile Include="Models\Api\Customer\PaswordRecoveryModel.cs" />
     <Compile Include="Models\Api\Customer\RegisterModel.cs" />
+    <Compile Include="Models\Api\Customer\SecurityPwdModel.cs" />
     <Compile Include="Models\Api\FilterModel.cs" />
     <Compile Include="Models\Api\Topics\TopicModel.cs" />
     <Compile Include="Models\Api\UploadFileBase.cs" />

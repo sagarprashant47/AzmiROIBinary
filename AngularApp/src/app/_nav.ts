@@ -51,16 +51,16 @@ export const navItems: INavData[] = [
      url: '/base/withdrawal',
     icon: 'fa fa-google-wallet'
    },
-  //  {
-  //    name: 'Transfer Fund',
-  //    url: '/base/transferfund',
-  //   icon: 'fa fa-google-wallet'
-  //  },
-  //  {
-  //   name: 'Transaction Report',
-  //   url: '/base/transferhistory',
-  //  icon: 'fa fa-google-wallet'
-  // },
+   {
+     name: 'Transfer Fund',
+     url: '/base/transferfund',
+    icon: 'fa fa-google-wallet'
+   },
+   {
+    name: 'Transaction Report',
+    url: '/base/transferhistory',
+   icon: 'fa fa-google-wallet'
+  },
   //  {
   //    name: 'Booster Coin',
   //    url: '/base/magiccoin',

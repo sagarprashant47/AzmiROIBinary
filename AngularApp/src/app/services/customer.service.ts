@@ -47,6 +47,15 @@ export class CustomerService {
     );
   }
 
+  SaveSecurityPassword(CustomerInfoModel)
+  {
+    
+    let url = environment.baseApiUrl + "Customer/UpdateSecurityPwd";
+    return this.http.post<any>(url,
+      CustomerInfoModel
+    );
+  }
+  
   MyReferral(CustomerId,LevelId)
   {
     let url = environment.baseApiUrl + "Customer/MyReferral?CustomerId="+CustomerId+"&LevelId="+LevelId;

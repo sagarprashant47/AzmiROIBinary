@@ -444,6 +444,23 @@ namespace SmartStore.WebApi.Controllers.Api
 		}
 
 		[System.Web.Http.HttpPost]
+		[System.Web.Http.ActionName("UpdateSecurityPwd")]
+		public HttpResponseMessage UpdateSecurityPwd(SecurityPwdModel model)
+		{
+			var customerguid = Request.Headers.GetValues("CustomerGUID").FirstOrDefault();
+			var cust = _customerService.GetCustomerByGuid(Guid.Parse(customerguid));
+			if (customerguid != null)
+			{
+				if (model.CustomerId != cust.Id)
+				{
+					return Request.CreateResponse(HttpStatusCode.Unauthorized, new { code = 0, Message = "something went wrong" });
+				}
+			} 
+			_genericAttributeService.SaveAttribute(cust, SystemCustomerAttributeNames.SecurityPassword, model.SecurityPassword);
+			return Request.CreateResponse(HttpStatusCode.OK, new { code = 0, Message = "success", data = model });
+		}
+
+		[System.Web.Http.HttpPost]
 		[System.Web.Http.ActionName("GetCustomerBoard")]
 		public HttpResponseMessage GetCustomerBoard(BoardModel model)
 		{

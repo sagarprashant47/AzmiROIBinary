@@ -14,6 +14,7 @@ export class ChangePasswordComponent implements OnInit{
 accountdetail: FormGroup;
 submitted = false;
 changepassword : FormGroup;
+securitypwd : FormGroup;
 
 constructor(private formBuilder: FormBuilder,
   private customerservice:CustomerService,
@@ -39,6 +40,9 @@ ngOnInit(): void {
     NewPassword:['', Validators.required],
     ConfirmNewPassword:['', Validators.required],
   });
+  this.securitypwd = this.formBuilder.group({
+    SecurityPassword:['', Validators.required],
+  });
 
   this.customerservice.GetCustomerInfo(this.CustomerId)
   .subscribe(
@@ -57,6 +61,7 @@ ngOnInit(): void {
   )
 }
 get f() { return this.changepassword.controls; }
+get s() { return this.securitypwd.controls; }
     ChangePassword() {
      
       // stop here if form is invalid
@@ -93,6 +98,40 @@ get f() { return this.changepassword.controls; }
     onReset() {
         this.submitted = false;
         this.changepassword.reset();
+    }
+
+    SaveSecurityPassword() {
+     debugger
+      // stop here if form is invalid
+      if (this.securitypwd.invalid) {
+          this.toastr.error("Enter Security Password fields please","Error");
+          return;
+      }
+
+      // if(this.securitypwd.value.SecurityPassword != this.changepassword.value.ConfirmNewPassword){
+      //   this.toastr.error("New and confirm password field did not match","Error");
+      //   return;
+      // }
+
+      $('.loaderbo').show();
+      this.securitypwd.value.CustomerId = this.CustomerId;
+      this.customerservice.SaveSecurityPassword(this.securitypwd.value)
+       .subscribe(
+         res =>{
+           console.log(res.Message)
+           debugger
+           if(res.Message === "success"){
+             this.toastr.success("Your security password has been updated","Success");
+           }
+           else{
+             this.toastr.error(res.Message);
+           }
+           $('.loaderbo').hide();
+         },
+         err => {
+           this.toastr.error("Something went wrong, contact support","Error")
+         }
+       )
     }
 
     Setup2FA(){
