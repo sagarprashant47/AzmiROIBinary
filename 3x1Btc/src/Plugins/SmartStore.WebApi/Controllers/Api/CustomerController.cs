@@ -243,6 +243,7 @@ namespace SmartStore.WebApi.Controllers.Api
 			model.TodaysPair = _customerService.GetCurrentActivePlan(customer.Id).ToString();
 			model.InvestorId = id.ToString();
 			model.Name = customer.GetFullName();
+			model.SecurityPwd = customer.GetAttribute<string>(SystemCustomerAttributeNames.SecurityPassword); ;
 			var ReferredBy = _customerService.GetCustomerById(customer.AffiliateId);
 			if (ReferredBy != null)
 			{
