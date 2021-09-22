@@ -52,7 +52,17 @@
               <label for="name"> NRIC : {{CustomerInfoModel.NICR}}</label><br/>
             </div>
           </div> -->
-
+          <div class="row">
+            <div class="col-sm-5">
+              <div class="form-group">
+                <label for="name">Security Password:</label>
+                <input type="password" formControlName="SecurityPassword" class="form-control" placeholder="Enter Security Password"  [ngClass]="{ 'is-invalid': submitted && f.SecurityPassword.errors }" />
+                <div *ngIf="submitted && f.SecurityPassword.errors" class="invalid-feedback">
+                  <div *ngIf="f.SecurityPassword.errors.required">Security Password is required</div>
+              </div>
+              </div>
+            </div>
+          </div>
           <div >
             <button type="save" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Request Withdrawal</button>
             <button type="cancel" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button>

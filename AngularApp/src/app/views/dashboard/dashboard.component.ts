@@ -70,7 +70,7 @@ export class DashboardComponent implements OnInit {
         .subscribe(
           res => {
             this.CustomerInfoModel = res.data;
-            debugger
+            //debugger
             if(this.CustomerInfoModel.SecurityPwd == null || this.CustomerInfoModel.SecurityPwd == ''){
               this.router.navigate(['/base/account']);
             }

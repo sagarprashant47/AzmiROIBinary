@@ -315,6 +315,27 @@ namespace SmartStore.WebApi.Controllers.Api
 		}
 
 		[System.Web.Http.HttpPost]
+		[System.Web.Http.ActionName("GetCustomerSecurityPwd")]
+		public HttpResponseMessage GetCustomerSecurityPwd(SecurityPwdModel securityPwdModel)
+		{
+			var customerguid = Request.Headers.GetValues("CustomerGUID").FirstOrDefault();
+			if (customerguid != null)
+			{
+				var cust = _customerService.GetCustomerByGuid(Guid.Parse(customerguid));
+				if (securityPwdModel.CustomerId != cust.Id)
+				{
+					return Request.CreateResponse(HttpStatusCode.Unauthorized, new { code = 0, Message = "something went wrong" });
+				}
+			}
+			CustomerInfoModel model = new CustomerInfoModel();
+			var customer = _customerService.GetCustomerById(securityPwdModel.CustomerId);
+			model.SecurityPwd = customer.GetAttribute<string>(SystemCustomerAttributeNames.SecurityPassword); ;
+
+			return Request.CreateResponse(HttpStatusCode.OK, new { code = 0, Message = "success", 
+				data = (model.SecurityPwd != securityPwdModel.SecurityPassword)? "Invalid Password" : "Correct Password"});
+		}
+
+		[System.Web.Http.HttpPost]
 		[System.Web.Http.ActionName("GetStokistDetail")]
 		public HttpResponseMessage GetStokistDetail()
 		{

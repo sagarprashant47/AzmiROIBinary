@@ -19,6 +19,12 @@ export class CommonService {
     let url = environment.baseApiUrl + "Common/Withdrawfund";
     return this.http.post<any>(url,TransactionModel)
   }
+
+  GetCustomerSecurityPwd(TransactionModel)
+  {
+    let url = environment.baseApiUrl + "Customer/GetCustomerSecurityPwd";
+    return this.http.post<any>(url,TransactionModel)
+  }
   
   GetAllCountry()
   {

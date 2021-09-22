@@ -30,7 +30,8 @@ ngOnInit(): void {
   this.CurrencyCode = (localStorage.getItem("CurrencyCode") == null) ? "USD" : localStorage.getItem("CurrencyCode");
   this.withdrawal =this.formBuilder.group({
     Amount: ['', Validators.required],
-    ProcessorId:['', Validators.required]
+    ProcessorId:['', Validators.required],
+    SecurityPassword: ['', Validators.required],
   });
   
   this.customerservice.GetCustomerInfo(this.CustomerId)
@@ -58,22 +59,46 @@ get f() { return this.withdrawal.controls; }
         if (this.withdrawal.invalid) {
             return;
         }
-
+        
         if(this.withdrawal.value.Amount < 25){
           this.toastr.error("Withdrawal Amount must be equal or greater then 25$.");
+          return;
         }
         if(this.withdrawal.value.Amount > 500){
           this.toastr.error("Maximum Withdrawal Amount 500$.");
+          return;
         }
-
+        
         this.withdrawal.value.CustomerId = this.CustomerId;
+        //here validate security pwd
         $('.loaderbo').show();
-        this.commonservice.Withdrawfund(this.withdrawal.value)
+        this.commonservice.GetCustomerSecurityPwd(this.withdrawal.value)
         .subscribe(
           res =>{
             if(res.Message === "success"){
-              this.toastr.success("Your withdrawal request is received","Congratulations !!")
-              this.router.navigate(['/dashboard']);
+              debugger
+              if(res.data.indexOf('Invalid') !== -1){
+                this.toastr.error("Please Enter Correct Security Password")
+              }
+              else{
+                this.commonservice.Withdrawfund(this.withdrawal.value)
+                .subscribe(
+                  res =>{
+                    if(res.Message === "success"){
+                      this.toastr.success("Your withdrawal request is received","Congratulations !!")
+                      this.router.navigate(['/dashboard']);
+                    }
+                    else{
+                      this.toastr.error(res.Message)
+                    }
+                    $('.loaderbo').hide();
+                  },
+                  err =>{
+                    this.toastr.error("Something went wrong");
+                    $('.loaderbo').hide();
+                  }
+                )
+              }
             }
             else{
               this.toastr.error(res.Message)
@@ -84,7 +109,7 @@ get f() { return this.withdrawal.controls; }
             this.toastr.error("Something went wrong");
             $('.loaderbo').hide();
           }
-        )
+        ) 
     }
 
     CalculateFees(){
