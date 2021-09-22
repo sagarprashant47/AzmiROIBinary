@@ -34,6 +34,14 @@
               </div>
             </div>
           </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="name">Security Password:</label>
+                <input type="text" class="form-control" [(ngModel)]="securityPwd" id="securityPwd" placeholder="Enter Security Password">
+              </div>
+            </div>
+          </div>
           <div >
             <button type="save" (click)="transferfund();" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Transfer Now</button>
             <button type="cancel" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button>
