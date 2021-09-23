@@ -24,7 +24,7 @@ constructor(private formBuilder: FormBuilder,
   private router: Router) { }
 
 CustomerId:string = localStorage.getItem("CustomerId");
-CustomerInfoModel = { FirstName:'',LastName:'',BitcoinAddress:'',AccountNumber:'',NICR:'',BankName:'',AccountHolderName:'',CountryId:53,Gender:'',Enable2FA:false,CustomerId:0,Email:"",ReferredBy:"",Username:"",Phone:""};
+CustomerInfoModel = { FirstName:'',LastName:'',BitcoinAddress:'',AccountNumber:'',NICR:'',BankName:'',AccountHolderName:'',CountryId:53,Gender:'',Enable2FA:false,CustomerId:0,Email:"",ReferredBy:"",Username:"",Phone:"",SecurityPassword:''};
 CurrencyCode:string;
 Countries=[];
 Pin2FA = "";
@@ -40,7 +40,7 @@ ngOnInit(): void {
     LastName:['', Validators.required],
     Phone:['', Validators.required],
     BitcoinAddress:['', Validators.required],
-
+    SecurityPassword:['', Validators.required],
     // AccountNumber:['', Validators.required],
     //   NICR:['', Validators.required],
     //   BankName:['', Validators.required],
@@ -105,13 +105,62 @@ get f() { return this.accountdetail.controls; }
 
     onSubmit() {
         this.submitted = true;
-
+        debugger
         // stop here if form is invalid
         if (this.accountdetail.invalid) {
             return;
         }
         var valid = false;
         $('.loaderbo').show();
+        
+        let SecModel = { CustomerId : this.CustomerId,SecurityPassword:this.accountdetail.controls.SecurityPassword.value};
+        this.commonservice.GetCustomerSecurityPwd(SecModel)
+        .subscribe(
+          res =>{
+            if(res.Message === "success"){
+              //debugger
+              if(res.data.indexOf('Invalid') !== -1){
+                this.toastr.error("Please Enter Correct Security Password")
+              }
+              else{
+                this.accountdetail.value.CustomerId = this.CustomerId;
+                this.accountdetail.value.Pin2FA = this.Pin2FA;
+                this.customerservice.UpdateCustomerInfo(this.accountdetail.value)
+                  .subscribe(
+                    res =>{
+                      if(res.Message === "success"){
+                        this.toastr.success("Your account details has been updated","Success");
+                      }
+                      else{
+                        this.toastr.error("Invalid 2FA Pin","Error")
+                      }
+                      $('.loaderbo').hide();
+                    },
+                    err => {
+                      if(err.status == 401){
+                        localStorage.clear();
+                        $('.loaderbo').hide();
+                        this.router.navigate(['/login']);
+                      }
+                      else{
+                        this.toastr.error("Something went wrong, contact support","Error")
+                        $('.loaderbo').hide();
+                      }
+                    }
+                  );
+              }
+            }
+            else{
+              this.toastr.error(res.Message)
+            }
+            $('.loaderbo').hide();
+          },
+          err =>{
+            console.log(err);
+            this.toastr.error("Something went wrong");
+            $('.loaderbo').hide();
+          }
+        ) 
         // this.commonservice.ValidateBitcoinAddress(this.accountdetail.value.BitcoinAddress).subscribe(
         //   res =>{
         //     if(res.address){
@@ -123,31 +172,7 @@ get f() { return this.accountdetail.controls; }
         //       return;
         //     }
             
-            this.accountdetail.value.CustomerId = this.CustomerId;
-            this.accountdetail.value.Pin2FA = this.Pin2FA;
-            this.customerservice.UpdateCustomerInfo(this.accountdetail.value)
-            .subscribe(
-              res =>{
-                if(res.Message === "success"){
-                  this.toastr.success("Your account details has been updated","Success");
-                }
-                else{
-                  this.toastr.error("Invalid 2FA Pin","Error")
-                }
-                $('.loaderbo').hide();
-              },
-              err => {
-                if(err.status == 401){
-                  localStorage.clear();
-                  $('.loaderbo').hide();
-                  this.router.navigate(['/login']);
-                }
-                else{
-                  this.toastr.error("Something went wrong, contact support","Error")
-                  $('.loaderbo').hide();
-                }
-              }
-            );
+            
         //   },
         //   err =>{
         //     this.toastr.error('Invalid Bitcoin address',"Invalid");

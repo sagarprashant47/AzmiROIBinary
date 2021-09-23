@@ -54,12 +54,12 @@ export class TransferFundComponent {
     }
 
     $('.loaderbo').show();
-    let SecModel = { CustomerId : this.CustomerId,CustomerEmail:"",SecurityPassword:model.SecurityPwd};
+    let SecModel = { CustomerId : this.CustomerId,SecurityPassword:model.SecurityPwd};
      this.commonservice.GetCustomerSecurityPwd(SecModel)
       .subscribe(
         res =>{
           if(res.Message === "success"){
-            debugger
+            //debugger
             if(res.data.indexOf('Invalid') !== -1){
               this.toastr.error("Please Enter Correct Security Password")
             }
