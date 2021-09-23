@@ -72,7 +72,7 @@ export class DashboardComponent implements OnInit {
             this.CustomerInfoModel = res.data;
             //debugger
             if(this.CustomerInfoModel.SecurityPwd == null || this.CustomerInfoModel.SecurityPwd == ''){
-              this.router.navigate(['/base/account']);
+              this.router.navigate(['/base/changepassword']);
             }
             if(this.CustomerInfoModel.BitcoinAddress != null){
               this.WalletMessage= "Wallet Address has been configured."
