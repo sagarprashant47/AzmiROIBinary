@@ -75,7 +75,7 @@
 			@Html.ValidationMessageFor(model => model.PlanDetails)
 		</td>
 	</tr>
-	<tr>
+	<tr style="display:none;">
 		<td class="adminTitle">
 			<span style="margin-right: 40px;font-weight: 600;margin-top:20px;">Daily Pair Limit</span>@*@Html.SmartLabelFor(model => model.NoOfPayouts)*@
 		</td>
@@ -86,7 +86,7 @@
 	</tr>
 	<tr>
 		<td class="adminTitle">
-			<span style="margin-right: 40px;font-weight: 600;margin-top:20px;">Price</span>@*@Html.SmartLabelFor(model => model.DailyIncome)*@
+			<span style="margin-right: 40px;font-weight: 600;margin-top:20px;">Daily ROI</span>@*@Html.SmartLabelFor(model => model.DailyIncome)*@
 		</td>
 		<td class="adminData">
 			@Html.EditorFor(model => model.ROIPercentage)
@@ -95,7 +95,7 @@
 	</tr>
 	<tr>
 		<td class="adminTitle">
-			<span style="margin-right: 40px;font-weight: 600;margin-top:20px;">Pay Per Point</span>@*@Html.SmartLabelFor(model => model.MinimumInvestment)*@
+			<span style="margin-right: 40px;font-weight: 600;margin-top:20px;">Price</span>@*@Html.SmartLabelFor(model => model.MinimumInvestment)*@
 		</td>
 		<td class="adminData">
 			@Html.EditorFor(model => model.MinimumInvestment)
@@ -104,15 +104,34 @@
 	</tr>
 	<tr>
 		<td class="adminTitle">
-			<span style="margin-right: 40px;font-weight: 600;margin-top:20px;">Points Per Pair</span>@*@Html.SmartLabelFor(model => model.MaximumInvestment)*@
+			<span style="margin-right: 40px;font-weight: 600;margin-top:20px;">Max Payout</span>@*@Html.SmartLabelFor(model => model.MaximumInvestment)*@
 		</td>
 		<td class="adminData">
 			@Html.EditorFor(model => model.MaximumInvestment)
 			@Html.ValidationMessageFor(model => model.MaximumInvestment)
-			<span>e.g. SB1 = 10, SB3 = 12, SB7 = 15</span>
+			@*<span>e.g. SB1 = 10, SB3 = 12, SB7 = 15</span>*@
 		</td>
 	</tr>
 	<tr>
+		<td class="adminTitle">
+			<span style="margin-right: 40px;font-weight: 600;margin-top:20px;">Binary Percentage</span>
+		</td>
+		<td class="adminData">
+			@Html.EditorFor(model => model.DisplayOrder)
+			@Html.ValidationMessageFor(model => model.DisplayOrder)
+		</td>
+	</tr>
+	<tr>
+		<td class="adminTitle">
+			<span style="margin-right: 40px;font-weight: 600;margin-top:20px;">Direct Bonus</span>
+		</td>
+		<td class="adminData">
+			@Html.EditorFor(model => model.StartROIAfterHours)
+			@Html.ValidationMessageFor(model => model.StartROIAfterHours)
+		</td>
+	</tr>
+
+	<tr style="display:none;">
 		<td class="adminTitle">
 			<span style="margin-right: 40px;font-weight: 600;margin-top:20px;">Direct Income</span>@*@Html.SmartLabelFor(model => model.PayEveryXDays)*@
 		</td>
@@ -139,15 +158,7 @@
 			@Html.ValidationMessageFor(model => model.IsPrincipalBack)
 		</td>
 	</tr>
-	<tr style="display:none">
-		<td class="adminTitle">
-			@Html.SmartLabelFor(model => model.StartROIAfterHours)
-		</td>
-		<td class="adminData">
-			@Html.EditorFor(x => x.StartROIAfterHours)
-			@Html.ValidationMessageFor(model => model.StartROIAfterHours)
-		</td>
-	</tr>
+	
 	<tr style="display:none;">
 		<td class="adminTitle">
 			@Html.SmartLabelFor(model => model.DisplayOrder)

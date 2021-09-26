@@ -18,6 +18,8 @@ namespace SmartStore.Admin.Validators.Hyip
 			RuleFor(x => x.MinimumInvestment).NotEmpty().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.MinimumInvestment.Required"));
 			RuleFor(x => x.MaximumInvestment).NotEmpty().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.MaximumInvestment.Required"));
 			RuleFor(x => x.PayEveryXDays).NotEmpty().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.PayEveryXDays.Required"));
+			RuleFor(x => x.DisplayOrder).NotEmpty().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.DisplayOrder.Required"));
+			RuleFor(x => x.StartROIAfterHours).NotEmpty().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.SendROIAfterHours.Required"));
 		}
 	}
 }
