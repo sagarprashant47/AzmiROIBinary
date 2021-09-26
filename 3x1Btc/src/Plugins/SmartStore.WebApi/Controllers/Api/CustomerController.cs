@@ -309,8 +309,17 @@ namespace SmartStore.WebApi.Controllers.Api
 			model.PlacementUserName = customer.PlacementUserName;
 			model.Position = customer.Position;
 			var currentPlan = _customerService.GetCurrentFullPlan(customer.Id);
-			model.PackageName = currentPlan.Name;
-			model.ROILimit = currentPlan.MaximumInvestment.ToString();
+			if(currentPlan != null)
+			{
+				model.PackageName = currentPlan?.Name;
+				model.ROILimit = currentPlan?.MaximumInvestment.ToString();
+			}
+			else
+			{
+				model.PackageName = "";
+				model.ROILimit = "";
+			}
+			
 			return Request.CreateResponse(HttpStatusCode.OK, new { code = 0, Message = "success", data = model });
 		}
 
