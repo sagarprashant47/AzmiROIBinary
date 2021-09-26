@@ -13,11 +13,11 @@ namespace SmartStore.Admin.Validators.Hyip
 		public PlanValidator(ILocalizationService localizationService)
 		{
 			RuleFor(x => x.Name).NotNull().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.Name.Required"));
-			RuleFor(x => x.NoOfPayouts).NotEmpty().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.NoOfDays.Required"));
+			//RuleFor(x => x.NoOfPayouts).NotEmpty().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.NoOfDays.Required"));
 			RuleFor(x => x.ROIPercentage).NotEmpty().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.ROIPercentage.Required"));
 			RuleFor(x => x.MinimumInvestment).NotEmpty().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.MinimumInvestment.Required"));
 			RuleFor(x => x.MaximumInvestment).NotEmpty().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.MaximumInvestment.Required"));
-			RuleFor(x => x.PayEveryXDays).NotEmpty().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.PayEveryXDays.Required"));
+			//RuleFor(x => x.PayEveryXDays).NotEmpty().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.PayEveryXDays.Required"));
 			RuleFor(x => x.DisplayOrder).NotEmpty().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.DisplayOrder.Required"));
 			RuleFor(x => x.StartROIAfterHours).NotEmpty().WithMessage(localizationService.GetResource("Admin.Hyip.Plan.Fields.SendROIAfterHours.Required"));
 		}
