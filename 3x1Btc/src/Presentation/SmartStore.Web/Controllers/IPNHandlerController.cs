@@ -92,13 +92,13 @@ namespace SmartStore.Web.Controllers
 							customerplan.CreatedOnUtc = DateTime.Now;
 							customerplan.UpdatedOnUtc = DateTime.Now;
 							customerplan.PlanId = transaction.RefId;
-							customerplan.AmountInvested = plan.MaximumInvestment;
+							customerplan.AmountInvested = plan.MinimumInvestment;
 							if (exisitingPlan != null)
 							{
 								customerplan.ROIPaid = exisitingPlan.ROIPaid;
 								customerplan.NoOfPayoutPaid = exisitingPlan.NoOfPayoutPaid;
 							}
-							customerplan.ROIToPay = (plan.MaximumInvestment * 3);
+							customerplan.ROIToPay = plan.MaximumInvestment;
 							customerplan.NoOfPayout = plan.NoOfPayouts;
 							customerplan.ExpiredDate = DateTime.Today;
 							customerplan.IsActive = true;
@@ -147,13 +147,13 @@ namespace SmartStore.Web.Controllers
 					customerplan.CreatedOnUtc = DateTime.Now;
 					customerplan.UpdatedOnUtc = DateTime.Now;
 					customerplan.PlanId = transaction.RefId;
-					customerplan.AmountInvested = plan.MaximumInvestment;
+					customerplan.AmountInvested = plan.MinimumInvestment;
 					if (exisitingPlan != null)
 					{
 						customerplan.ROIPaid = exisitingPlan.ROIPaid;
 						customerplan.NoOfPayoutPaid = exisitingPlan.NoOfPayoutPaid;
 					}
-					customerplan.ROIToPay = (plan.MaximumInvestment * 3);
+					customerplan.ROIToPay = plan.MaximumInvestment;
 					customerplan.NoOfPayout = plan.NoOfPayouts;
 					customerplan.ExpiredDate = DateTime.Today;
 					customerplan.IsActive = true;

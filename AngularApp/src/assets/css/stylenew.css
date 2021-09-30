@@ -390,7 +390,7 @@ header nav.navbar .navbar-collapse ul.navbar-nav li a:hover, header nav.navbar .
   display:flex; flex-direction: row; justify-content: space-between; align-items: center;
 }
 .dashboardcount ul li{margin-left: 15px; width:25%; display: flex; flex-direction: column;}
-.dashboardcount ul li span{width:100%; font-size:24px;}
+.dashboardcount ul li span{width:100%; font-size:20px;}
 .dashboardcount ul li:first-child{margin-left:0px;}
 .dashboardcount ul li .text-value{display: flex; flex-direction: column;}
 .dashboardcount ul li:nth-child(1) .card{

@@ -223,7 +223,7 @@ namespace SmartStore.Admin.Controllers
 			DateTime? endDateValue = (model.EndDate == null) ? null : model.EndDate;
 
 			int[] StatusIds = model.StatusIds.ToIntArray();
-			int[] TranscationTypeIds = { (int)TransactionType.Funding };
+			int[] TranscationTypeIds = { (int)TransactionType.Purchase };
 			var customerid = _workContext.CurrentCustomer.Id;
 			bool Is_Visible = true;
 			if (_workContext.CurrentCustomer.IsInCustomerRole("Administrators"))
