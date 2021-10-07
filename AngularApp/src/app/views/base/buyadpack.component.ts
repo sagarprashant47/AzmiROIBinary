@@ -91,7 +91,7 @@ constructor(
         NoOfPosition : 1,
         RefId : newplan.Id,
         ProcessorId : 0,
-        TranscationNote : "Plan "+ newplan.Id + "Purchase",
+        TranscationNote : "Plan "+ newplan.Id + " Purchase",
         TranscationTypeId : 2
       }
       $('.loaderbo').show();
