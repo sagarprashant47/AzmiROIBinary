@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
   SiteUrl : string = environment.siteUrl;
   CustomerInfoModel = { Email:'',BitcoinAddress:'',Enable2FA:false,TotalReferral:0,SystemName:'',Status : '', FullName :'',AvailableBalance :0,TradeIncome:0,NetworkIncome:0,RoyaltyIncome:0,TodaysPair:'',AvailableCoin:0,TotalEarning:0,DirectBonus:0,
   AvailableCoins:0,UnilevelEarning : 0,CyclerIncome:0,CustomerId:0,RegistrationDate:'',ServerTime :'',ReferredBy:'',AffilateId:0,
-  NoOfSecondsToSurf:0,NoOfAdsToSurf:0,PlacementId:0,Position:'',Username:'',PlacementUserName:'',AccumulatedPairing:'',PackageName:'',SecurityPwd:''}
+  NoOfSecondsToSurf:0,NoOfAdsToSurf:0,PlacementId:0,Position:'',Username:'',PlacementUserName:'',AccumulatedPairing:'',PackageName:'',SecurityPwd:'',Gender:''}
   CustomerBoard = [];
   Managers = [] = environment.Managers;
   Campaigns = [];
@@ -74,6 +74,9 @@ export class DashboardComponent implements OnInit {
             //debugger
             if(this.CustomerInfoModel.SecurityPwd == null || this.CustomerInfoModel.SecurityPwd == ''){
               this.router.navigate(['/base/changepassword']);
+            }
+            if(!this.CustomerInfoModel.Gender || !this.CustomerInfoModel.BitcoinAddress){
+              this.router.navigate(['/base/account']);
             }
             if(this.CustomerInfoModel.BitcoinAddress != null){
               this.WalletMessage= "Wallet Address has been configured."

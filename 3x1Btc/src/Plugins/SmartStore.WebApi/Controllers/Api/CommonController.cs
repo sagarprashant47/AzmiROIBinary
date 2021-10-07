@@ -134,7 +134,7 @@ namespace SmartStore.WebApi.Controllers.Api
 				{
 					AvailableProcessor.Add(new SelectListItem()
 					{
-						Text = "Bitcoin",
+						Text = "USDT",
 						Value = "0"
 					});
 				}
