@@ -136,5 +136,7 @@ namespace SmartStore.WebApi.Models.Api.Customer
 		public int AffilateId { get; set; }
 		public string ROILimit { get; set; }
 		public string SecurityPwd { get; set; }
+		public float TotalTB { get; set; }
+		public float TotalSB { get; set; }
 	}
 }

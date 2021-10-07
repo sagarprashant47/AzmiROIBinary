@@ -319,7 +319,10 @@ namespace SmartStore.WebApi.Controllers.Api
 				model.PackageName = "";
 				model.ROILimit = "";
 			}
-			
+			ICollection<Transaction> transactions = customer.Transaction;
+			model.TotalSB = transactions.Where(x => x.TranscationTypeId == 6).Sum(x => x.Amount);
+			model.TotalTB = transactions.Where(x => x.TranscationTypeId == 7).Sum(x => x.Amount);
+
 			return Request.CreateResponse(HttpStatusCode.OK, new { code = 0, Message = "success", data = model });
 		}
 
