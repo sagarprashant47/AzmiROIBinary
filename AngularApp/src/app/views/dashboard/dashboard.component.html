@@ -42,11 +42,11 @@
         <div class="card">
             <div class="card-body binarybox">
                 <div class="invite-content">
-                    <h4>Binary Side</h4>
+                    <!-- <h4>Binary Side</h4>
                     <p>Choose the side for your next indications
-                    </p>
+                    </p> -->
                     <p class="text-center mb-0 pb-0">
-                    <a (click)="SetBinarySetting('L')" [ngClass]="{'active': CustomerInfoModel.SystemName ==='L'}" class="text-dark btn btn-outline-primary">
+                    <!-- <a (click)="SetBinarySetting('L')" [ngClass]="{'active': CustomerInfoModel.SystemName ==='L'}" class="text-dark btn btn-outline-primary">
                         Side of Binary:  Left
                     </a>      
                     <a  (click)="SetBinarySetting('A')" [ngClass]="{'active': CustomerInfoModel.SystemName ==='A'}" class="text-dark btn btn-outline-primary">
@@ -54,7 +54,9 @@
                     </a>        
                     <a  (click)="SetBinarySetting('R')" [ngClass]="{'active': CustomerInfoModel.SystemName ==='R'}" class="text-dark btn btn-outline-primary">
                         Side of Binary:  Right
-                    </a>        
+                    </a>         -->
+                    <a target="_blank" href="{{'#/register?r='+this.Username}}" class="active text-dark btn btn-outline-primary">Registration</a>
+                    <!-- +'&placement='+parentRow.Name+'&p=L -->
                     </p>
                 </div>
             </div>
@@ -62,7 +64,7 @@
     </div>
     <div class="col-md-12">
         <div class="card-header">
-            <h4>Investment Income</h4>
+            <h4 style="color:#353535!important">Investment Income</h4>
         </div>
         <div class="dashboardcount">
             <ul>
@@ -113,7 +115,7 @@
     </div>
     <div class="col-md-12">
         <div class="card-header">
-            <h4>Network Income</h4>
+            <h4 style="color:#353535!important">Network Income</h4>
         </div>
         <div class="dashboardcount">
             <ul>
@@ -150,7 +152,7 @@
     </div>
     <div class="col-md-12">
         <div class="card-header">
-            <h4>Wallet</h4>
+            <h4 style="color:#353535!important">Wallet</h4>
         </div>
         <div class="dashboardcount">
             <ul>
