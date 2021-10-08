@@ -107,7 +107,7 @@
                         placeholder="Enter USDT"
                         [ngClass]="{ 'is-invalid': submitted && f.BitcoinAddress.errors }" />
                       <div *ngIf="submitted && f.BitcoinAddress.errors" class="invalid-feedback">
-                        <div *ngIf="f.BitcoinAddress.errors.required">Bitcoin Address is required</div>
+                        <div *ngIf="f.BitcoinAddress.errors.required">USDT Address is required</div>
                       </div>
                     </div>
                   </div>
@@ -116,7 +116,7 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="name">Security Password:</label>
-                      <input type="text" formControlName="SecurityPassword" class="form-control"
+                      <input type="password" formControlName="SecurityPassword" class="form-control"
                         placeholder="Enter Security Password"
                         [ngClass]="{ 'is-invalid': submitted && f.SecurityPassword.errors }" />
                       <div *ngIf="submitted && f.SecurityPassword.errors" class="invalid-feedback">
