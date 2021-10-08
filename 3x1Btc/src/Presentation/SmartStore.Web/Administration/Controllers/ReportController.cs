@@ -633,7 +633,12 @@ namespace SmartStore.Admin.Controllers
 			{
 				var transaction = _transactionService.GetTransactionById(Id);
 				transaction.StatusId = (int)Status.Completed;
+				transaction.Status = Status.Completed;
+				transaction.FinalAmount = transaction.Amount;
+				transaction.TranscationNote = transaction.TranscationNote + ":" + Request["txn_id"].ToSafe();
 				_transactionService.UpdateTransaction(transaction);
+				ApproveTransaction(transaction);
+
 				if (transaction.TranscationTypeId == 1)
 				{
 					Services.MessageFactory.SendDepositNotificationMessageToUser(transaction, "", "", _localizationSettings.DefaultAdminLanguageId);
@@ -658,6 +663,47 @@ namespace SmartStore.Admin.Controllers
 					Success = false
 				});
 			}
+		}
+
+		public void ApproveTransaction(Transaction transaction)
+		{
+			if (transaction.TranscationTypeId == 2)
+			{
+				var exisitingPlan = _customerService.GetCurrentPlanList(transaction.CustomerId);
+				var plan = _planService.GetPlanById(transaction.RefId);
+				var customerplan = new CustomerPlan();
+				customerplan.CustomerId = transaction.CustomerId;
+				customerplan.PurchaseDate = DateTime.Now;
+				customerplan.CreatedOnUtc = DateTime.UtcNow;
+				customerplan.UpdatedOnUtc = DateTime.UtcNow;
+				customerplan.PlanId = transaction.RefId;
+				customerplan.AmountInvested = plan.MinimumInvestment;
+				if (exisitingPlan != null)
+				{
+					customerplan.ROIPaid = exisitingPlan.ROIPaid;
+					customerplan.NoOfPayoutPaid = exisitingPlan.NoOfPayoutPaid;
+				}
+				customerplan.ROIToPay = plan.MaximumInvestment;
+				customerplan.NoOfPayout = plan.NoOfPayouts;
+				customerplan.ExpiredDate = DateTime.Today;
+				customerplan.IsActive = true;
+				if (plan.StartROIAfterHours > 0)
+					customerplan.LastPaidDate = DateTime.Today.AddHours(plan.StartROIAfterHours);
+				else
+					customerplan.LastPaidDate = DateTime.Today;
+				_customerPlanService.InsertCustomerPlan(customerplan);
+				_customerService.SpPayNetworkIncome(customerplan.CustomerId, customerplan.PlanId);
+				if (exisitingPlan != null)
+				{
+					exisitingPlan.IsActive = false;
+					exisitingPlan.IsExpired = true;
+					exisitingPlan.ROIPaid = 0;
+					exisitingPlan.NoOfPayoutPaid = 0;
+					_customerPlanService.UpdateCustomerPlan(exisitingPlan);
+				}
+				Services.MessageFactory.SendDepositNotificationMessageToUser(transaction, "", "", _localizationSettings.DefaultAdminLanguageId);
+			}
+			 
 		}
 
 		public void ReleaseLevelCommission(int planid, int customerid, float amountInvested)
