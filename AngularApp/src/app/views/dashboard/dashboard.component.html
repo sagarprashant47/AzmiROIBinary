@@ -42,9 +42,7 @@
         <div class="card">
             <div class="card-body binarybox">
                 <div class="invite-content">
-                    <!-- <h4>Binary Side</h4>
-                    <p>Choose the side for your next indications
-                    </p> -->
+                    <h4>New Registration</h4>
                     <p class="text-center mb-0 pb-0">
                     <!-- <a (click)="SetBinarySetting('L')" [ngClass]="{'active': CustomerInfoModel.SystemName ==='L'}" class="text-dark btn btn-outline-primary">
                         Side of Binary:  Left
@@ -55,7 +53,7 @@
                     <a  (click)="SetBinarySetting('R')" [ngClass]="{'active': CustomerInfoModel.SystemName ==='R'}" class="text-dark btn btn-outline-primary">
                         Side of Binary:  Right
                     </a>         -->
-                    <a target="_blank" href="{{'#/register?r='+this.Username}}" class="active text-dark btn btn-outline-primary">Registration</a>
+                    <a target="_blank" href="{{'#/register?r='+this.Username}}" class="active text-dark btn btn-outline-primary">Register New Member</a>
                     <!-- +'&placement='+parentRow.Name+'&p=L -->
                     </p>
                 </div>
@@ -150,7 +148,7 @@
             </ul>
         </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div class="card-header">
             <h4 style="color:#353535!important">Wallet</h4>
         </div>
@@ -173,8 +171,36 @@
             </ul>
         </div>
     </div>
-    
-    <div class="col-12 col-lg-6">
+    <div class="col-6 col-lg-6">
+        <div class="card tasklist">
+            <div class="card-header">
+                <h4>Binary Tree Summary</h4>
+            </div>
+                            <div class="card-body binarycountbox">
+                               
+                                <ul>
+                                    <li><h4>Left</h4></li>
+                                   <li>
+                                        <b>Users on Left : </b>{{treebalance.LeftUsers}}  
+                                    </li>
+                                    <li>
+                                        <b>Investment on Left : </b>{{treebalance.TotalLeftPoint}}
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li><h4>Right</h4></li>
+                                   <li>
+                                        <b>Users on Right : </b>{{treebalance.RightUsers}}
+                                    </li>
+                                   
+                                    <li>
+                                        <b>Investment on Right : </b>{{treebalance.TotalRightPoint}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+            </div>
+    <!-- <div class="col-12 col-lg-6">
                 <div class="card tasklist">
                     <div class="card-header">
                         <h4>Tasks List</h4>
@@ -219,36 +245,8 @@
                         </ul>
                     </div>
                 </div>
-    </div>
-    <div class="col-12 col-lg-6">
-<div class="card tasklist">
-    <div class="card-header">
-        <h4>Binary Tree Summary</h4>
-    </div>
-                    <div class="card-body binarycountbox">
-                       
-                        <ul>
-                            <li><h4>Left</h4></li>
-                           <li>
-                                <b>Users on Left : </b>{{treebalance.LeftUsers}}  
-                            </li>
-                            <li>
-                                <b>Investment on Left : </b>{{treebalance.TotalLeftPoint}}
-                            </li>
-                        </ul>
-                        <ul>
-                            <li><h4>Right</h4></li>
-                           <li>
-                                <b>Users on Right : </b>{{treebalance.RightUsers}}
-                            </li>
-                           
-                            <li>
-                                <b>Investment on Right : </b>{{treebalance.TotalRightPoint}}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-    </div>
+    </div> -->
+  
     <!-- <div class="col-2"><img src="assets/img/avatars/6.jpg"></div> -->
   </div>
 </div>
