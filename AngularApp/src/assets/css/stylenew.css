@@ -394,19 +394,22 @@ header nav.navbar .navbar-collapse ul.navbar-nav li a:hover, header nav.navbar .
 .dashboardcount ul li:first-child{margin-left:0px;}
 .dashboardcount ul li .text-value{display: flex; flex-direction: column;}
 .dashboardcount ul li:nth-child(1) .card{
-  background:#2eadd3!important;
+   background:#f1b500!important;/*2eadd3 */
 }
 .dashboardcount ul li:nth-child(2) .card{
   background:#f1b500!important;
 }
 .dashboardcount ul li:nth-child(3) .card{
-  background:#30ca58!important;
+  background:#f1b500!important;/*30ca58*/
 }
 .dashboardcount ul li:nth-child(4) .card{
-  background:#2e4ad3!important;
+  background:#f1b500!important;/*2e4ad3*/
 }
 .dashboardcount ul li:nth-child(5) .card{
-  background:#464646!important;
+   background:#f1b500!important;/*464646 */
+}
+.dashboardcount ul li:nth-child(6) .card{
+  background:#f1b500!important;
 }
 .tasklist.card .card-header h4{
 color:#353535!important;
